@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #c95500;
+    }
+
+    p {
+      color: #fff;
+      font-size: 14pt;
+      font-family: Lato;
+      font-weight: lighter;
+    }
+
+    #main {
+      top: 30%;
+      left:30%;
+      position : absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <p>mina han</p>
+    <p id="resume">&emsp;&emsp;resume</p>
+    <p id="github">&emsp;&emsp;github</p>
+    <p id="linkedin">&emsp;&emsp;linkedin</p>
+    <p id="contact">&emsp;&emsp;contact</p>
+  </div>
+  <script type="text/javascript">
+    var contact = document.getElementById('contact');
+    contact.onclick = function(){
+      // if (contact.innerHTML.indexOf('mina.han@gmail.com') > -1){
+        contact.innerHTML += " me at";
+        document.getElementById('main').innerHTML +=
+        "<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mina.han@gmail.com</p><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(415)217-9410</p>";
+      // }
+    }
+    document.getElementById('linkedin').onclick = function(){
+      window.open('https://www.linkedin.com/in/minahanhan');
+    }
+    document.getElementById('github').onclick = function(){
+      window.open('https://www.github.com/minahan')
+    }
+    document.getElementById('resume').onclick=function(){
+      window.open'(http://www.minahan.github.io/resume')
+    }
+  </script>
+
+</script>
+</body>
+</html>
