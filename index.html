@@ -30,19 +30,22 @@
   </div>
   <script type="text/javascript">
     var contact = document.getElementById('contact');
+    var linkedin = document.getElementById('linkedin');
+    var github = document.getElementById('github');
+    var resume = document.getElementById('resume');
     contact.onclick = function(){
       // if (contact.innerHTML.indexOf('mina.han@gmail.com') > -1){
         contact.innerHTML += " me at";
         document.getElementById('main').innerHTML += "<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mina.han@gmail.com</p><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(415) 217-9410</p>";
       // }
     }
-    document.getElementById('linkedin').onclick = function(){
+    linkedin.onclick = function(){
       window.open('https://www.linkedin.com/in/minahanhan');
     }
-    document.getElementById('github').onclick = function(){
+    github.onclick = function(){
       window.open('https://www.github.com/minahan');
     }
-    document.getElementById('resume').onclick=function(){
+    resume.onclick=function(){
       alert('hi');
       window.open('minahan.github.io/resume.pdf');
     }
