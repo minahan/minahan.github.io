@@ -45,15 +45,36 @@
         document.getElementById('main').innerHTML += "<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mina.han@gmail.com</p><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(415) 217-9410</p>";
       // }
     }
+
+    function goBold(element){
+      element.style.fontWeight = 'normal';
+    }
+    function goBack(element){
+      element.style.fontWeight = 'lighter';
+    }
+
+    contact.onmouseover = goBold(contact);
+    contact.onmouseleave = goBack(contact);
+
     linkedin.onclick = function(){
       window.open('https://www.linkedin.com/in/minahanhan');
     }
+
+    linkedin.onmouseover = goBold(linkedin);
+    linkedin.onmouseleave = goBack(linkedin);
+
     github.onclick = function(){
       window.open('https://www.github.com/minahan');
     }
+    github.onmouseover = goBold(github);
+    github.onmouseleave = goBack(github);
+
     resume.onclick=function(){
       window.open('resume.pdf');
     }
+    resume.onmouseover = goBold(resume);
+    resume.onmouseleave = goBack(resume);
+
   </script>
 
 </script>
