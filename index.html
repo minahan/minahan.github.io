@@ -19,8 +19,8 @@
       position : absolute;
     }
     #links {
-      left:110%;
-      position:relative;
+      left:80px;
+      position:absolute;
     }
   </style>
 </head>
@@ -41,39 +41,33 @@
     var resume = document.getElementById('resume');
     contact.onclick = function(){
       // if (contact.innerHTML.indexOf('mina.han@gmail.com') > -1){
-        contact.innerHTML += " me at";
-        document.getElementById('main').innerHTML += "<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mina.han@gmail.com</p><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(415) 217-9410</p>";
+        contact.style.fontWeight = 'lighter';
+        //contact.innerHTML += " me at";
+        document.getElementById('links').innerHTML += "<div style='position:absolute;left:80px'><p>mina.han@gmail.com</p><p>(415) 217-9420</p></div>";
       // }
     }
 
-    function goBold(element){
-      element.style.fontWeight = 'normal';
-    }
-    function goBack(element){
-      element.style.fontWeight = 'lighter';
-    }
-
-    contact.onmouseover = goBold(contact);
-    contact.onmouseleave = goBack(contact);
+    contact.onmouseover = function(){contact.style.fontWeight='normal'};
+    contact.onmouseleave = function(){contact.style.fontWeight='lighter'};
 
     linkedin.onclick = function(){
       window.open('https://www.linkedin.com/in/minahanhan');
     }
 
-    linkedin.onmouseover = goBold(linkedin);
-    linkedin.onmouseleave = goBack(linkedin);
+    linkedin.onmouseover = function(){linkedin.style.fontWeight='normal'};
+    linkedin.onmouseleave = function(){linkedin.style.fontWeight='lighter'};
 
     github.onclick = function(){
       window.open('https://www.github.com/minahan');
     }
-    github.onmouseover = goBold(github);
-    github.onmouseleave = goBack(github);
+    github.onmouseover = function(){github.style.fontWeight='normal'};
+    github.onmouseleave = function(){github.style.fontWeight='lighter'};
 
     resume.onclick=function(){
       window.open('resume.pdf');
     }
-    resume.onmouseover = goBold(resume);
-    resume.onmouseleave = goBack(resume);
+    resume.onmouseover = function(){resume.style.fontWeight='normal'};
+    resume.onmouseleave = function(){resume.style.fontWeight='lighter'};
 
   </script>
 
