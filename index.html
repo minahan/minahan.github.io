@@ -8,7 +8,7 @@
 
     p {
       color: #fff;
-      font-size: 14pt;
+      font-size: 12pt;
       font-family: Lato;
       font-weight: lighter;
     }
@@ -32,6 +32,10 @@
       <p id="github">github</p>
       <p id="linkedin">linkedin</p>
       <p id="contact">contact</p>
+      <div id="conact info" style='position:absolute;left:70px;display:none'>
+        <p>mina.han@gmail.com</p>
+        <p>(415) 217-9420</p>
+      </div>
     </div>
   </div>
   <script type="text/javascript">
@@ -40,11 +44,8 @@
     var github = document.getElementById('github');
     var resume = document.getElementById('resume');
     contact.onclick = function(){
-      // if (contact.innerHTML.indexOf('mina.han@gmail.com') > -1){
         contact.style.fontWeight = 'lighter';
-        //contact.innerHTML += " me at";
-        document.getElementById('links').innerHTML += "<div style='position:absolute;left:80px'><p>mina.han@gmail.com</p><p>(415) 217-9420</p></div>";
-      // }
+        document.getElementById('conact info').style.display = 'inline';
     }
 
     contact.onmouseover = function(){contact.style.fontWeight='normal'};
