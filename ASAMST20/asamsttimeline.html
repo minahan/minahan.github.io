@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="d3-timeline-master/src/d3-timeline.js"></script>
+
+  <style type="text/css">
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+    }
+
+    * {
+      font-family: sans-serif;
+      font-size: 10px;
+    }
+
+    .axis text {
+      font-family: sans-serif;
+      font-size: 10px;
+    }
+
+    .timeline-label {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+
+
+    #timeline2 .axis {
+      transform: translate(0px,40px);
+      -ms-transform: translate(0px,40px); /* IE 9 */
+      -webkit-transform: translate(0px,40px); /* Safari and Chrome */
+      -o-transform: translate(0px,40px); /* Opera */
+      -moz-transform: translate(0px,40px); /* Firefox */
+    }
+
+    .coloredDiv {
+      height:20px; width:20px; float:left;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function() {
+      var timeline = {
+      Chinese: ["1868 Burlingame Treaty","1875 Page Law","1882 Chinese Exclusion Act","1892 Geary Act","1943 Magnuson Act, repeal of Chinese Exclusion"],
+      Japanese: ["1907 Gentlemans Agreement","1917 Immigration Act","1922 Takao Ozawa vs. US"],
+      Korean: [],
+      Filipino: ["1934: Tydings-McDuffie Act"],
+      Indian: ["1923 US vs. Bhagat Singh Thind"],
+      Vietnamese: ["1987 Amerasian Homecoming Act"],
+      Everyone: ["1917 Immigration Act","1924 Johnson-Reed Act","1945 War Brides Act","1952 McCarran-Walter Act","1965 Hart-Cellar Act","1980 Refugee Act","1990 Immigration Act"],
+      US: ["1929-1941 Great Depression","1939-1945 WW2"]
+      }
+
+      function convert(timeline){
+        data = []
+        for (var race in timeline){
+          var events = {};
+          events["label"] = race;
+          var times = [];
+          for (var date in timeline[race]){
+            date = timeline[race][date];
+            var newEvent = {}
+            if (date[4] == "-"){
+              newEvent["starting_time"] = parseInt(date.substring(0,4));
+              newEvent["ending_time"] = parseInt(date.substring(5,9));
+              newEvent["label"] = date.substring(10,date.length);
+            } else {
+              newEvent["display"] = "circle";
+              newEvent["starting_time"] = parseInt(date.substring(0,4));
+              newEvent["label"] = date.substring(5,date.length);
+            }
+          times.push(newEvent);
+          }
+          events["times"] = times;
+          data.push(events);
+        }
+        return data;
+      }
+
+      var labelTestData = convert(timeline);
+      console.log(labelTestData);
+      var width = 500;
+      // var height = 500;
+
+      function timelineHover() {
+        var chart = d3.timeline()
+          .width(width*4)
+          // .height(height)
+          .stack()
+          .showTimeAxisTick()
+          .beginning(1860)
+          .ending(2000)
+          .margin({left:30, right:30, top:0, bottom:0})
+          // .hover(function (d, i, datum) {
+          // // d is the current rendering object
+          // // i is the index during d3 rendering
+          // // datum is the id object
+          //   var div = $('#hoverRes');
+          //   var colors = chart.colors();
+          //   div.find('.coloredDiv').css('background-color', colors(i))
+          //   div.find('#name').text(datum.label);
+          // })
+          .click(function (d, i, datum) {
+            alert(datum.label);
+          })
+          .scroll(function (x, scale) {
+            $("#scrolled_date").text(scale.invert(x) + " to " + scale.invert(x+width));
+          });
+
+        var svg = d3.select("#timeline3").append("svg").attr("width", 1200)
+          .datum(labelTestData).call(chart);
+      }
+
+      timelineHover();
+
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <!-- <h3>A simple timeline</h3> -->
+    <div id="timeline1"></div>
+  </div>
+  <div>
+    <!-- <h3>A simple timeline without Axis</h3> -->
+    <div id="timeline1_noaxis"></div>
+  </div>
+  <div>
+    <!-- <h3>It works with circles too</h3> -->
+    <div id="timeline2"></div>
+  </div>
+  <div>
+    <!-- <h3>Combine circles and rectangles</h3> -->
+    <div id="timeline2_combine"></div>
+  </div>
+  <div>
+    <!-- <h3>A stacked timeline with hover, click, and scroll events</h3> -->
+    <div id="timeline3"></div>
+    <div id="hoverRes">
+      <div class="coloredDiv"></div>
+      <div id="name"></div>
+      <div id="scrolled_date"></div>
+    </div>
+  </div>
+
+</body>
+</html>
